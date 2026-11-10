@@ -1,0 +1,18 @@
+{
+  "base_url": "https://nisim401454-blip.github.io/agalist-prices/",
+  "chains": ["OSHER_AD", "YELLOW", "YOHANANOF"],
+  "limit": 14,
+  "min_chains": 2,
+  "max_products": 30000,
+  "geocode_budget": 60,
+  "sample_city": "874,5000,3000,6700",
+  "names": {
+    "SHUFERSAL": "שופרסל", "RAMI_LEVY": "רמי לוי", "OSHER_AD": "אושר עד", "YOHANANOF": "יוחננוף",
+    "TIV_TAAM": "טיב טעם", "YELLOW": "yellow", "DOR_ALON": "דור אלון", "KESHET": "קשת טעמים",
+    "KING_STORE": "קינג סטור", "MAAYAN_2000": "מעיין 2000", "BAREKET": "ברקת", "POLIZER": "פוליצר",
+    "SALACH_DABACH": "סאלח דבאח", "SHEFA_BARCART_ASHEM": "שפע ברכת השם", "SHUK_AHIR": "שוק העיר",
+    "STOP_MARKET": "סטופ מרקט", "SUPER_SAPIR": "סופר ספיר", "SUPER_YUDA": "סופר יודה",
+    "FRESH_MARKET_AND_SUPER_DOSH": "פרש מרקט / סופר דוש", "ZOL_VEBEGADOL": "זול ובגדול",
+    "MESHMAT_YOSEF_1": "משנת יוסף", "MESHMAT_YOSEF_2": "משנת יוסף (קיי טי)", "CITY_MARKET_SHOPS": "סיטי מרקט"
+  }
+}
