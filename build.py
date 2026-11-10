@@ -152,6 +152,13 @@ def describe(code):
 
 
 # ---------- 4. loose items matched by name, per chain ----------
+def term_hit(term, label):
+    """Whole-word match: 'תות' must not hit 'פיתות'. Multi-word terms match as a phrase."""
+    if " " in term:
+        return term in label
+    return any(word.startswith(term) for word in label.split())
+
+
 generic_codes = {}  # chain -> generic index -> codes ordered by how many stores carry them
 for name, data in chains.items():
     per_chain = {}
@@ -162,7 +169,7 @@ for name, data in chains.items():
         matches = [
             code
             for code, label in weighted
-            if any(term in label for term in wanted) and not any(term in label for term in banned)
+            if any(term_hit(term, label) for term in wanted) and not any(term in label for term in banned)
         ]
         matches.sort(key=lambda code: (-store_count[(name, code)], len(data["items"][code][0])))
         if matches:
