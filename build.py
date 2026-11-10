@@ -189,23 +189,29 @@ def in_israel(lat, lon):
     return 29.3 <= lat <= 33.45 and 34.2 <= lon <= 35.95
 
 
-def nominatim(query):
+def nominatim(query, details=False):
     global used
     if used >= budget:
         return None
     used += 1
     if os.environ.get("AGALIST_FAKE_GEO"):
         seed = zlib.crc32(query.encode("utf8"))
+        if details:
+            return [32.05, 34.8, "ירושלים"]
         return [round(32.0 + (seed % 1000) / 2000, 5), round(34.8 + ((seed >> 10) % 1000) / 4000, 5)]
     time.sleep(1.1)
     url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
-        {"q": query, "format": "json", "limit": 1, "countrycodes": "il", "accept-language": "he"}
+        {"q": query, "format": "json", "limit": 1, "countrycodes": "il", "accept-language": "he", "addressdetails": 1}
     )
     try:
         rows = json.loads(http(url, timeout=25))
         if rows:
             lat, lon = round(float(rows[0]["lat"]), 5), round(float(rows[0]["lon"]), 5)
             if in_israel(lat, lon):
+                if details:
+                    address = rows[0].get("address", {})
+                    place = address.get("city") or address.get("town") or address.get("village") or address.get("municipality") or ""
+                    return [lat, lon, place]
                 return [lat, lon]
     except Exception as error:
         if len(STATUS["notes"]) < 30:
@@ -223,9 +229,9 @@ def city_center(code, name):
 
 
 def locate(key, store, code, city_name):
-    hit = geo.get(key)
+    hit = geo.get(key) or None
     address = re.sub(r"[,;]+", " ", store.get("addr", "")).strip()
-    if hit and hit[0] is not None and hit[3:4] == [address]:
+    if hit and hit[3:4] == [address]:
         return hit[:3]
     center = city_center(code, city_name)
     point = None
@@ -236,9 +242,6 @@ def locate(key, store, code, city_name):
     if point:
         geo[key] = point + [0, address]
         return geo[key][:3]
-    if used >= budget and not (hit and hit[0] is not None):
-        if not center:
-            return None
     if center:
         seed = zlib.crc32(key.encode("utf8"))
         jitter = [((seed & 0xFF) - 128) / 128 * 0.006, (((seed >> 8) & 0xFF) - 128) / 128 * 0.006]
@@ -247,6 +250,30 @@ def locate(key, store, code, city_name):
             geo[key] = approx + [address]
         return approx
     return None
+
+
+def guess_city(key, chain, store):
+    """For stores published without a city: find the branch by name, then read the city from the map."""
+    hit = geo.get(key)
+    if hit and len(hit) >= 5:
+        return hit[4], localities.get(hit[4], ""), hit[:3]
+    if hit == []:
+        return "", "", None
+    label = CONFIG["names"].get(chain, "")
+    found = None
+    for query in (f"{label} {store.get('name', '')}".strip(), store.get("addr", "")):
+        if len(query) > 5:
+            found = nominatim(query, details=True)
+            if found and name_to_code.get(clean(found[2]).replace("-", " ")):
+                break
+            found = None
+    if not found:
+        if used < budget:
+            geo[key] = []
+        return "", "", None
+    code = name_to_code[clean(found[2]).replace("-", " ")]
+    geo[key] = [found[0], found[1], 1, store.get("addr", ""), code]
+    return code, localities[code], geo[key][:3]
 
 
 def distance(a, b):
@@ -263,12 +290,15 @@ for name, data in chains.items():
     for sub, base in data["base"].items():
         base_index[sub] = {index_of[code]: price for code, price in base.items() if code in index_of}
     for sid, store in data["stores"].items():
-        code, city_name = resolve_city(store.get("city"))
-        if not code:
-            skipped["no city"] += 1
-            continue
         key = f"{name}|{sid}"
-        point = locate(key, store, code, city_name)
+        code, city_name = resolve_city(store.get("city"))
+        point = None
+        if not code:
+            code, city_name, point = guess_city(key, name, store)
+            if not code:
+                skipped["no city"] += 1
+                continue
+        point = point or locate(key, store, code, city_name)
         if not point:
             skipped["no location"] += 1
             continue
