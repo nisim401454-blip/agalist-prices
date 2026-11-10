@@ -186,6 +186,7 @@ STATUS["products"] = len(products)
 geo = previous("geo.json", {})
 budget = CONFIG.get("geocode_budget", 4000)
 used = 0
+tries = geo.setdefault("_tries", {})
 
 
 def in_israel(lat, lon):
@@ -207,7 +208,11 @@ def nominatim(query, details=False):
         {"q": query, "format": "json", "limit": 1, "countrycodes": "il", "accept-language": "he", "addressdetails": 1}
     )
     try:
-        rows = json.loads(http(url, timeout=25))
+        try:
+            rows = json.loads(http(url, timeout=25))
+        except Exception:
+            time.sleep(4)
+            rows = json.loads(http(url, timeout=25))
         if rows:
             lat, lon = round(float(rows[0]["lat"]), 5), round(float(rows[0]["lon"]), 5)
             if in_israel(lat, lon):
@@ -231,27 +236,38 @@ def city_center(code, name):
     return geo.get(key) or None
 
 
-def locate(key, store, code, city_name):
+def locate(key, chain, store, code, city_name):
+    """Exact map point when the address is found, otherwise an approximate point near the city center.
+    Approximate stores are tried again on later nights with a differently worded query (3 tries)."""
     hit = geo.get(key) or None
     address = re.sub(r"[,;]+", " ", store.get("addr", "")).strip()
-    if hit and hit[3:4] == [address]:
+    tried = tries.get(key, 0)
+    if hit and hit[3:4] == [address] and (hit[2] == 0 or tried >= 3 or used >= budget):
         return hit[:3]
     center = city_center(code, city_name)
     point = None
-    if address and city_name and len(address) > 3:
-        point = nominatim(f"{address}, {city_name}")
+    if city_name and tried < 3 and used < budget:
+        label = CONFIG["names"].get(chain, "")
+        queries = [
+            f"{address}, {city_name}" if len(address) > 3 else "",
+            f"{label} {store.get('name', '')}, {city_name}".strip(),
+            f"{re.sub(r'[^\w\s]', ' ', address)} {city_name}" if len(address) > 3 else "",
+        ]
+        tries[key] = tried + 1
+        if queries[tried].strip(" ,"):
+            point = nominatim(queries[tried])
         if point and center and distance(point, center) > 25:
             point = None
     if point:
         geo[key] = point + [0, address]
         return geo[key][:3]
+    if hit and hit[3:4] == [address]:
+        return hit[:3]
     if center:
         seed = zlib.crc32(key.encode("utf8"))
         jitter = [((seed & 0xFF) - 128) / 128 * 0.006, (((seed >> 8) & 0xFF) - 128) / 128 * 0.006]
-        approx = [round(center[0] + jitter[0], 5), round(center[1] + jitter[1], 5), 1]
-        if used < budget:
-            geo[key] = approx + [address]
-        return approx
+        geo[key] = [round(center[0] + jitter[0], 5), round(center[1] + jitter[1], 5), 1, address]
+        return geo[key][:3]
     return None
 
 
@@ -301,7 +317,7 @@ for name, data in chains.items():
             if not code:
                 skipped["no city"] += 1
                 continue
-        point = point or locate(key, store, code, city_name)
+        point = point or locate(key, name, store, code, city_name)
         if not point:
             skipped["no location"] += 1
             continue

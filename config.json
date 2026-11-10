@@ -28,8 +28,8 @@
  "limit": null,
  "min_chains": 2,
  "max_products": 12000,
- "geocode_budget": 4500,
- "sample_city": "6700,874,4000",
+ "geocode_budget": 3000,
+ "sample_city": "",
  "names": {
   "SHUFERSAL": "שופרסל",
   "RAMI_LEVY": "רמי לוי",
