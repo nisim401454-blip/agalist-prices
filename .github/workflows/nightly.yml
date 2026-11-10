@@ -1,0 +1,77 @@
+name: nightly prices
+on:
+  schedule:
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["*.py", "config.json", "generics.json"]
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: prices
+  cancel-in-progress: true
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      chains: ${{ steps.plan.outputs.chains }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        run: python plan.py
+  fetch:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        chain: ${{ fromJson(needs.plan.outputs.chains) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install il-supermarket-scraper
+      - run: python fetch_chain.py ${{ matrix.chain }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chain-${{ matrix.chain }}
+          path: out/
+          retention-days: 1
+          if-no-files-found: ignore
+  build:
+    needs: [plan, fetch]
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chain-*
+          merge-multiple: true
+          path: art
+      - run: python build.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
+      - run: |
+          git config user.name "agalist-bot"
+          git config user.email "agalist-bot@users.noreply.github.com"
+          git fetch origin main
+          git reset origin/main
+          git add status
+          git commit -m "nightly status" || echo "nothing to commit"
+          git push
