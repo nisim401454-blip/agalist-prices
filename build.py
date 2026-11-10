@@ -138,14 +138,17 @@ universe = universe[: CONFIG.get("max_products", 30000)]
 
 
 def describe(code):
+    best = None
     for name in CONFIG["chains"]:
         row = chains.get(name, {}).get("items", {}).get(code)
-        if row and row[0]:
-            qty = number(row[2])
-            unit = row[3]
-            size = f"{qty} {unit}".strip() if qty and qty != "0" else ""
-            return row[0], row[1], size
-    return "", "", ""
+        if row and row[0] and (best is None or len(row[0]) > len(best[0])):
+            best = row
+    if not best:
+        return "", "", ""
+    qty = number(best[2])
+    unit = re.sub(r"^[\d.]+\s*", "", best[3] or "")
+    size = f"{qty} {unit}".strip() if qty and qty != "0" and unit else ""
+    return re.sub(r"\s+", " ", best[0]).strip(), best[1], size
 
 
 # ---------- 4. loose items matched by name, per chain ----------
