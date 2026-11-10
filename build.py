@@ -169,6 +169,40 @@ for name, data in chains.items():
             per_chain[index] = matches[:6]
     generic_codes[name] = per_chain
 
+# Guard against look-alikes (a deli salad, a gift basket): a chain's candidate must be priced like the
+# same produce in the other chains.
+def typical_price(data, code):
+    values = [base[code] for base in data["base"].values() if code in base]
+    if not values:
+        values = [delta[code] for delta in data["diff"].values() if delta.get(code)]
+    values.sort()
+    return values[len(values) // 2] if values else 0
+
+
+dropped = 0
+for index, generic in enumerate(GENERICS):
+    firsts = sorted(
+        price
+        for name, data in chains.items()
+        if index in generic_codes[name]
+        for price in [typical_price(data, generic_codes[name][index][0])]
+        if price
+    )
+    if len(firsts) < 3:
+        continue
+    middle = firsts[len(firsts) // 2]
+    for name, data in chains.items():
+        codes = generic_codes[name].get(index)
+        if not codes:
+            continue
+        kept = [code for code in codes if middle * 0.35 <= typical_price(data, code) <= middle * 2.2]
+        dropped += len(codes) - len(kept)
+        if kept:
+            generic_codes[name][index] = kept
+        else:
+            del generic_codes[name][index]
+STATUS["generic_candidates_dropped"] = dropped
+
 products = []
 for index, generic in enumerate(GENERICS):
     products.append(["g:" + generic["id"], generic["name"], "", "ק\"ג", 0, 0, generic["any"], generic["not"]])
