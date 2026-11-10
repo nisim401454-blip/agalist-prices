@@ -1,0 +1,1553 @@
+{
+ "chains": {
+  "Yellow": [
+   {
+    "file": "PriceFull7290644700005-001-100-20261110-001003.xml",
+    "bytes": 416358,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290644700005",
+     "SubChainID": "001",
+     "StoreID": "100",
+     "BikoretNo": "4"
+    },
+    "records_tag": "Item",
+    "records": 498,
+    "samples": [
+     {
+      "PriceUpdateTime": "2021-07-13T21:27:56.000",
+      "ItemCode": "7290000888000",
+      "LastSaleDateTime": "2026-11-06T08:23:42.000",
+      "ItemType": "1",
+      "ItemName": "מצת אבן",
+      "ManufactureName": "Unknown",
+      "ManufactureCountry": "Unknown",
+      "ManufactureItemDescription": "Unknown",
+      "UnitQty": "יחידה",
+      "Quantity": "",
+      "UnitOfMeasure": "Unknown",
+      "bIsWeighted": "0",
+      "QtyInPackage": "",
+      "ItemPrice": "4.00",
+      "UnitOfMeasurePrice": "",
+      "AllowDiscount": "0",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2021-07-13T21:27:56.000",
+      "ItemCode": "7290000888001",
+      "LastSaleDateTime": "2026-11-09T13:50:26.000",
+      "ItemType": "1",
+      "ItemName": "מצת אלקטרוני",
+      "ManufactureName": "Unknown",
+      "ManufactureCountry": "Unknown",
+      "ManufactureItemDescription": "Unknown",
+      "UnitQty": "יחידה",
+      "Quantity": "",
+      "UnitOfMeasure": "Unknown",
+      "bIsWeighted": "0",
+      "QtyInPackage": "",
+      "ItemPrice": "5.00",
+      "UnitOfMeasurePrice": "",
+      "AllowDiscount": "0",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2021-07-13T21:27:52.000",
+      "ItemCode": "30107014",
+      "LastSaleDateTime": "2026-11-07T17:36:53.000",
+      "ItemType": "1",
+      "ItemName": "נ.ג סלים+פילטר 32יח",
+      "ManufactureName": "Unknown",
+      "ManufactureCountry": "Unknown",
+      "ManufactureItemDescription": "Unknown",
+      "UnitQty": "יחידה",
+      "Quantity": "",
+      "UnitOfMeasure": "Unknown",
+      "bIsWeighted": "0",
+      "QtyInPackage": "",
+      "ItemPrice": "10.00",
+      "UnitOfMeasurePrice": "",
+      "AllowDiscount": "0",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "PriceFull7290644700005-001-107-20261110-001016.xml",
+    "bytes": 362780,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290644700005",
+     "SubChainID": "001",
+     "StoreID": "107",
+     "BikoretNo": "3"
+    },
+    "records_tag": "Item",
+    "records": 433,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-12-29T00:03:06.000",
+      "ItemCode": "7290000888001",
+      "LastSaleDateTime": "2026-11-09T16:52:48.000",
+      "ItemType": "1",
+      "ItemName": "מצת אלקטרוני",
+      "ManufactureName": "Unknown",
+      "ManufactureCountry": "Unknown",
+      "ManufactureItemDescription": "Unknown",
+      "UnitQty": "יחידה",
+      "Quantity": "",
+      "UnitOfMeasure": "Unknown",
+      "bIsWeighted": "0",
+      "QtyInPackage": "",
+      "ItemPrice": "5.00",
+      "UnitOfMeasurePrice": "",
+      "AllowDiscount": "0",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2021-08-02T09:24:17.000",
+      "ItemCode": "30112902",
+      "LastSaleDateTime": "2026-11-08T18:32:00.000",
+      "ItemType": "1",
+      "ItemName": "נייר גלגול קטן+פילטר",
+      "ManufactureName": "Unknown",
+      "ManufactureCountry": "Unknown",
+      "ManufactureItemDescription": "Unknown",
+      "UnitQty": "יחידה",
+      "Quantity": "",
+      "UnitOfMeasure": "Unknown",
+      "bIsWeighted": "0",
+      "QtyInPackage": "",
+      "ItemPrice": "9.00",
+      "UnitOfMeasurePrice": "",
+      "AllowDiscount": "0",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-03-31T00:03:01.000",
+      "ItemCode": "40084107",
+      "LastSaleDateTime": "2026-08-30T15:19:46.000",
+      "ItemType": "1",
+      "ItemName": "ב.הפתעה קינדר קלאסי",
+      "ManufactureName": "Unknown",
+      "ManufactureCountry": "Unknown",
+      "ManufactureItemDescription": "Unknown",
+      "UnitQty": "יחידה",
+      "Quantity": "20.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "",
+      "ItemPrice": "10.90",
+      "UnitOfMeasurePrice": "54.50",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "Stores7290644700005-000-20261108-060000.xml",
+    "bytes": 101480,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290644700005",
+     "ChainName": "פז קמעונאות ואנרגיה בע\"מ",
+     "LastUpdateDate": "2026-11-08",
+     "LastUpdateTime": "06:00:00.647"
+    },
+    "records_tag": "Store",
+    "records": 242,
+    "samples": [
+     {
+      "StoreID": "100",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "אבו כביר - אלכס סטפי",
+      "Address": "188 הרצל",
+      "City": "5000",
+      "ZIPCode": "0066555"
+     },
+     {
+      "StoreID": "107",
+      "BikoretNo": "9",
+      "StoreType": "1",
+      "StoreName": "נווה צדק - יחיא אבו",
+      "Address": "35 אילת",
+      "City": "5000",
+      "ZIPCode": "0068103"
+     },
+     {
+      "StoreID": "108",
+      "BikoretNo": "8",
+      "StoreType": "1",
+      "StoreName": "הסיירים - רוזי ריזה",
+      "Address": "כביש 4 תל אביב -אשדוד מול מרכז חיזו",
+      "City": "466",
+      "ZIPCode": "0000000"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290644700005-000-20261109-060000.xml",
+    "bytes": 101480,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290644700005",
+     "ChainName": "פז קמעונאות ואנרגיה בע\"מ",
+     "LastUpdateDate": "2026-11-09",
+     "LastUpdateTime": "06:00:00.700"
+    },
+    "records_tag": "Store",
+    "records": 242,
+    "samples": [
+     {
+      "StoreID": "100",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "אבו כביר - אלכס סטפי",
+      "Address": "188 הרצל",
+      "City": "5000",
+      "ZIPCode": "0066555"
+     },
+     {
+      "StoreID": "107",
+      "BikoretNo": "9",
+      "StoreType": "1",
+      "StoreName": "נווה צדק - יחיא אבו",
+      "Address": "35 אילת",
+      "City": "5000",
+      "ZIPCode": "0068103"
+     },
+     {
+      "StoreID": "108",
+      "BikoretNo": "8",
+      "StoreType": "1",
+      "StoreName": "הסיירים - רוזי ריזה",
+      "Address": "כביש 4 תל אביב -אשדוד מול מרכז חיזו",
+      "City": "466",
+      "ZIPCode": "0000000"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290644700005-000-20261110-060000.xml",
+    "bytes": 101480,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290644700005",
+     "ChainName": "פז קמעונאות ואנרגיה בע\"מ",
+     "LastUpdateDate": "2026-11-10",
+     "LastUpdateTime": "06:00:00.787"
+    },
+    "records_tag": "Store",
+    "records": 242,
+    "samples": [
+     {
+      "StoreID": "100",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "אבו כביר - אלכס סטפי",
+      "Address": "188 הרצל",
+      "City": "5000",
+      "ZIPCode": "0066555"
+     },
+     {
+      "StoreID": "107",
+      "BikoretNo": "9",
+      "StoreType": "1",
+      "StoreName": "נווה צדק - יחיא אבו",
+      "Address": "35 אילת",
+      "City": "5000",
+      "ZIPCode": "0068103"
+     },
+     {
+      "StoreID": "108",
+      "BikoretNo": "8",
+      "StoreType": "1",
+      "StoreName": "הסיירים - רוזי ריזה",
+      "Address": "כביש 4 תל אביב -אשדוד מול מרכז חיזו",
+      "City": "466",
+      "ZIPCode": "0000000"
+     }
+    ]
+   }
+  ],
+  "Osherad": [
+   {
+    "file": "PriceFull7290103152017-001-001-20261110-080014.xml",
+    "bytes": 5498720,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290103152017",
+     "SubChainID": "001",
+     "StoreID": "001",
+     "BikoretNo": "4"
+    },
+    "records_tag": "Item",
+    "records": 6311,
+    "samples": [
+     {
+      "PriceUpdateTime": "2023-06-27T07:28:59.000",
+      "ItemCode": "7290106669857",
+      "LastSaleDateTime": "2026-11-06T11:54:21.000",
+      "ItemType": "1",
+      "ItemName": "קפסולות עלית אספרסו",
+      "ManufactureName": "שטראוס קפה בי.וי",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "קפסולות עלית אספרסו",
+      "UnitQty": "גרם",
+      "Quantity": "50.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "16.70",
+      "UnitOfMeasurePrice": "33.40",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2024-03-03T07:04:30.000",
+      "ItemCode": "7290001343845",
+      "LastSaleDateTime": "2026-11-09T16:23:10.000",
+      "ItemType": "1",
+      "ItemName": "גרנולה עם פירות יבשי",
+      "ManufactureName": "ויטליה ניקולה",
+      "ManufactureCountry": "מקדוניה",
+      "ManufactureItemDescription": "גרנולה עם פירות יבשי",
+      "UnitQty": "גרם",
+      "Quantity": "850.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "19.90",
+      "UnitOfMeasurePrice": "2.34",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-06-08T07:34:59.000",
+      "ItemCode": "7290110561604",
+      "LastSaleDateTime": "2026-11-09T21:45:04.000",
+      "ItemType": "1",
+      "ItemName": "מארז גמדים תות בננה",
+      "ManufactureName": "שטראוס",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "מארז גמדים תות בננה",
+      "UnitQty": "גרם",
+      "Quantity": "800.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "19.20",
+      "UnitOfMeasurePrice": "2.40",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "PriceFull7290103152017-001-001-20261110-110502.xml",
+    "bytes": 5498750,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290103152017",
+     "SubChainID": "001",
+     "StoreID": "001",
+     "BikoretNo": "4"
+    },
+    "records_tag": "Item",
+    "records": 6311,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-02-20T07:42:42.000",
+      "ItemCode": "7290105968654",
+      "LastSaleDateTime": "2026-11-09T22:18:16.000",
+      "ItemType": "1",
+      "ItemName": "רביולי בטטה שטראוס 4",
+      "ManufactureName": "שטראוס",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "רביולי בטטה שטראוס 4",
+      "UnitQty": "גרם",
+      "Quantity": "400.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "18.90",
+      "UnitOfMeasurePrice": "4.72",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2022-07-24T10:50:51.000",
+      "ItemCode": "7290017884288",
+      "LastSaleDateTime": "2026-11-09T19:28:21.000",
+      "ItemType": "1",
+      "ItemName": "עוגיות מקלות קינמון",
+      "ManufactureName": "מאפיית ישראל חיפה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "עוגיות מקלות קינמון",
+      "UnitQty": "גרם",
+      "Quantity": "400.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "11.50",
+      "UnitOfMeasurePrice": "2.88",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2022-03-22T11:27:28.000",
+      "ItemCode": "7290018195048",
+      "LastSaleDateTime": "2026-09-29T17:24:03.000",
+      "ItemType": "1",
+      "ItemName": "אננס חתוך טעמן 850 ג",
+      "ManufactureName": "פ.ת גרייט פנאפל",
+      "ManufactureCountry": "תאילנד",
+      "ManufactureItemDescription": "אננס חתוך טעמן 850 ג",
+      "UnitQty": "גרם",
+      "Quantity": "850.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "10.90",
+      "UnitOfMeasurePrice": "1.28",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "Stores7290103152017-000-20261108-080500.xml",
+    "bytes": 9790,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290103152017",
+     "ChainName": "אושר עד",
+     "LastUpdateDate": "2026-11-08",
+     "LastUpdateTime": "08:05:00.577"
+    },
+    "records_tag": "Store",
+    "records": 24,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "מגדל העמק",
+      "Address": "האיצטדיון 11",
+      "City": "874",
+      "ZIPCode": "2303401"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "גבעת שאול",
+      "Address": "בית הדפוס 29",
+      "City": "3000",
+      "ZIPCode": "9548334"
+     },
+     {
+      "StoreID": "005",
+      "BikoretNo": "2",
+      "StoreType": "1",
+      "StoreName": "קרית ביאליק",
+      "Address": "הנס מולר 6, צור שלום",
+      "City": "9500",
+      "ZIPCode": "2751206"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290103152017-000-20261109-080500.xml",
+    "bytes": 9790,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290103152017",
+     "ChainName": "אושר עד",
+     "LastUpdateDate": "2026-11-09",
+     "LastUpdateTime": "08:05:00.293"
+    },
+    "records_tag": "Store",
+    "records": 24,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "מגדל העמק",
+      "Address": "האיצטדיון 11",
+      "City": "874",
+      "ZIPCode": "2303401"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "גבעת שאול",
+      "Address": "בית הדפוס 29",
+      "City": "3000",
+      "ZIPCode": "9548334"
+     },
+     {
+      "StoreID": "005",
+      "BikoretNo": "2",
+      "StoreType": "1",
+      "StoreName": "קרית ביאליק",
+      "Address": "הנס מולר 6, צור שלום",
+      "City": "9500",
+      "ZIPCode": "2751206"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290103152017-000-20261110-080500.xml",
+    "bytes": 9790,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290103152017",
+     "ChainName": "אושר עד",
+     "LastUpdateDate": "2026-11-10",
+     "LastUpdateTime": "08:05:00.097"
+    },
+    "records_tag": "Store",
+    "records": 24,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "מגדל העמק",
+      "Address": "האיצטדיון 11",
+      "City": "874",
+      "ZIPCode": "2303401"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "גבעת שאול",
+      "Address": "בית הדפוס 29",
+      "City": "3000",
+      "ZIPCode": "9548334"
+     },
+     {
+      "StoreID": "005",
+      "BikoretNo": "2",
+      "StoreType": "1",
+      "StoreName": "קרית ביאליק",
+      "Address": "הנס מולר 6, צור שלום",
+      "City": "9500",
+      "ZIPCode": "2751206"
+     }
+    ]
+   }
+  ],
+  "Shufersal": [
+   {
+    "file": "PriceFull7290027600007-001-164-20261110-030000.xml",
+    "bytes": 4738911,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290027600007",
+     "SubChainID": "001",
+     "StoreID": "164",
+     "BikoretNo": "7"
+    },
+    "records_tag": "Item",
+    "records": 5546,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-12-28T09:51:00",
+      "ItemCode": "10900302814",
+      "LastSaleDateTime": "2026-10-29T17:26:29",
+      "ItemType": "1",
+      "ItemName": "ניילון נצמד 30ס\"מ30* מטר",
+      "ManufactureName": "ריינולדס",
+      "ManufactureCountry": "CN",
+      "ManufactureItemDescription": "ניילון נצמד 30ס\"מ*30 מטר",
+      "UnitQty": "מטרים",
+      "Quantity": "30.00",
+      "UnitOfMeasure": "מטרים",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "10.00",
+      "UnitOfMeasurePrice": "0.33",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2026-10-06T09:43:00",
+      "ItemCode": "11182700954",
+      "LastSaleDateTime": "2026-11-05T11:49:55",
+      "ItemType": "1",
+      "ItemName": "שעועית שחורה 439 גרם",
+      "ManufactureName": "האנאובר פודס קורפורשיין",
+      "ManufactureCountry": "US",
+      "ManufactureItemDescription": "שעועית שחורה 439 גרם",
+      "UnitQty": "גרם",
+      "Quantity": "439.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "12.90",
+      "UnitOfMeasurePrice": "2.94",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-05-06T10:33:00",
+      "ItemCode": "11210000094",
+      "LastSaleDateTime": "2026-11-08T20:29:11",
+      "ItemType": "1",
+      "ItemName": "רוטב טבסקו 60 מ\"ל",
+      "ManufactureName": "ניצן",
+      "ManufactureCountry": "US",
+      "ManufactureItemDescription": "רוטב טבסקו 60 מ\"ל",
+      "UnitQty": "מיליליטר",
+      "Quantity": "60.00",
+      "UnitOfMeasure": "100 מיליליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "0",
+      "ItemPrice": "13.90",
+      "UnitOfMeasurePrice": "23.17",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "PriceFull7290027600007-001-168-20261110-030000.xml",
+    "bytes": 5528350,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290027600007",
+     "SubChainID": "001",
+     "StoreID": "168",
+     "BikoretNo": "3"
+    },
+    "records_tag": "Item",
+    "records": 6474,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-12-12T05:39:00",
+      "ItemCode": "10900035187",
+      "LastSaleDateTime": "2026-10-22T09:25:02",
+      "ItemType": "1",
+      "ItemName": "שקיות זיפר M 25 יחידות",
+      "ManufactureName": "ריינולדס",
+      "ManufactureCountry": "TH",
+      "ManufactureItemDescription": "שקיות זיפר M 25 יחידות",
+      "UnitQty": "יחידות",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "יחידות",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "17.90",
+      "UnitOfMeasurePrice": "17.90",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-12-30T08:22:00",
+      "ItemCode": "10900302814",
+      "LastSaleDateTime": "2026-10-29T17:47:04",
+      "ItemType": "1",
+      "ItemName": "ניילון נצמד 30ס\"מ30* מטר",
+      "ManufactureName": "ריינולדס",
+      "ManufactureCountry": "CN",
+      "ManufactureItemDescription": "ניילון נצמד 30ס\"מ*30 מטר",
+      "UnitQty": "מטרים",
+      "Quantity": "30.00",
+      "UnitOfMeasure": "מטרים",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "10.00",
+      "UnitOfMeasurePrice": "0.33",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2026-09-30T08:25:00",
+      "ItemCode": "11182700954",
+      "LastSaleDateTime": "2026-09-27T12:24:55",
+      "ItemType": "1",
+      "ItemName": "שעועית שחורה 439 גרם",
+      "ManufactureName": "האנאובר פודס קורפורשיין",
+      "ManufactureCountry": "US",
+      "ManufactureItemDescription": "שעועית שחורה 439 גרם",
+      "UnitQty": "גרם",
+      "Quantity": "439.00",
+      "UnitOfMeasure": "100 גרם",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "12.90",
+      "UnitOfMeasurePrice": "2.94",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "Stores7290027600007-000-20261110-020.xml",
+    "bytes": 92968,
+    "root": "Chain",
+    "top": {
+     "ChainID": "7290027600007",
+     "ChainName": "שופרסל",
+     "LastUpdateDate": "2026-11-10",
+     "LastUpdateTime": "02:01:01"
+    },
+    "records_tag": "Store",
+    "records": 97,
+    "samples": [
+     {
+      "StoreID": "784",
+      "BikoretNo": "7",
+      "StoreType": "1",
+      "StoreName": "BE כפר גנים",
+      "Address": "מרכז מסחרי כפר גנים",
+      "City": "7900",
+      "ZIPCode": "4935048"
+     },
+     {
+      "StoreID": "781",
+      "BikoretNo": "7",
+      "StoreType": "1",
+      "StoreName": "BE פרישמן ת\"א",
+      "Address": "דיזינגוף 102",
+      "City": "5000",
+      "ZIPCode": "6439614"
+     },
+     {
+      "StoreID": "776",
+      "BikoretNo": "7",
+      "StoreType": "1",
+      "StoreName": "BE טירה",
+      "Address": "טארק עבדאלחי",
+      "City": "2720",
+      "ZIPCode": "4491500"
+     }
+    ]
+   }
+  ],
+  "TivTaam": [
+   {
+    "file": "PriceFull7290873255550-000-002-20261110-004004.xml",
+    "bytes": 18486876,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290873255550",
+     "SubChainID": "000",
+     "StoreID": "002",
+     "BikoretNo": "8"
+    },
+    "records_tag": "Item",
+    "records": 21514,
+    "samples": [
+     {
+      "PriceUpdateTime": "2024-11-17T13:03:00",
+      "ItemCode": "1101346",
+      "LastSaleDateTime": "2026-11-08T14:50:02",
+      "ItemType": "0",
+      "ItemName": "בוזנינה לבנה להב",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "לא ידוע",
+      "ManufactureItemDescription": "בוזנינה לבנה",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "145.00",
+      "UnitOfMeasurePrice": "145.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-10-24T17:01:00",
+      "ItemCode": "1101421",
+      "LastSaleDateTime": "2026-11-08T13:05:31",
+      "ItemType": "0",
+      "ItemName": "פסטרמה קוסטיצה להב",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "לא ידוע",
+      "ManufactureItemDescription": "פסטרמה קוסטיצה",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "189.00",
+      "UnitOfMeasurePrice": "189.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2024-11-17T13:03:00",
+      "ItemCode": "1101858",
+      "LastSaleDateTime": "2026-11-09T09:50:56",
+      "ItemType": "0",
+      "ItemName": "אודסקיה להב",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "לא ידוע",
+      "ManufactureItemDescription": "אודסקיה",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "93.00",
+      "UnitOfMeasurePrice": "93.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "PriceFull7290873255550-000-003-20261110-004004.xml",
+    "bytes": 16905510,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290873255550",
+     "SubChainID": "000",
+     "StoreID": "003",
+     "BikoretNo": "7"
+    },
+    "records_tag": "Item",
+    "records": 19668,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-09-14T15:01:00",
+      "ItemCode": "10900302814",
+      "LastSaleDateTime": "2026-10-11T19:51:18",
+      "ItemType": "1",
+      "ItemName": "ניילון נצמד דיימונד 30 מטר",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "",
+      "ManufactureItemDescription": "ניילון נצמד דיימונד",
+      "UnitQty": "מטרים",
+      "Quantity": "30.00",
+      "UnitOfMeasure": "מטרים",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "16.90",
+      "UnitOfMeasurePrice": "0.56",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-09-14T15:01:00",
+      "ItemCode": "10900302913",
+      "LastSaleDateTime": "2026-09-19T10:01:05",
+      "ItemType": "1",
+      "ItemName": "ניילון נצמד דיימונד 91 מטר",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "",
+      "ManufactureItemDescription": "ניילון נצמד דיימונד",
+      "UnitQty": "מטרים",
+      "Quantity": "91.00",
+      "UnitOfMeasure": "מטרים",
+      "bIsWeighted": "0",
+      "QtyInPackage": "1",
+      "ItemPrice": "39.90",
+      "UnitOfMeasurePrice": "0.44",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2024-11-17T12:23:00",
+      "ItemCode": "1101346",
+      "LastSaleDateTime": "2026-11-09T09:35:05",
+      "ItemType": "0",
+      "ItemName": "בוזנינה לבנה להב",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "לא ידוע",
+      "ManufactureItemDescription": "בוזנינה לבנה",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "145.00",
+      "UnitOfMeasurePrice": "145.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "Stores7290873255550-000-20261108-050501.xml",
+    "bytes": 21042,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290873255550",
+     "ChainName": "טיב טעם",
+     "LastUpdateDate": "2026-11-08",
+     "LastUpdateTime": "05:05:01.110"
+    },
+    "records_tag": "Store",
+    "records": 54,
+    "samples": [
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "נתניה",
+      "Address": "בני גאון 2",
+      "City": "7400",
+      "ZipCode": "0000000"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "אשדוד",
+      "Address": "ז'בוטינסקי 45 מתחם סטאר סנטר",
+      "City": "70",
+      "ZipCode": "0000000"
+     },
+     {
+      "StoreID": "006",
+      "BikoretNo": "1",
+      "StoreType": "1",
+      "StoreName": "בת ים",
+      "Address": "אהוד קינמון 14",
+      "City": "6200",
+      "ZipCode": "5959401"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290873255550-000-20261109-050500.xml",
+    "bytes": 21042,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290873255550",
+     "ChainName": "טיב טעם",
+     "LastUpdateDate": "2026-11-09",
+     "LastUpdateTime": "05:05:00.937"
+    },
+    "records_tag": "Store",
+    "records": 54,
+    "samples": [
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "נתניה",
+      "Address": "בני גאון 2",
+      "City": "7400",
+      "ZipCode": "0000000"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "אשדוד",
+      "Address": "ז'בוטינסקי 45 מתחם סטאר סנטר",
+      "City": "70",
+      "ZipCode": "0000000"
+     },
+     {
+      "StoreID": "006",
+      "BikoretNo": "1",
+      "StoreType": "1",
+      "StoreName": "בת ים",
+      "Address": "אהוד קינמון 14",
+      "City": "6200",
+      "ZipCode": "5959401"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290873255550-000-20261110-050501.xml",
+    "bytes": 21042,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290873255550",
+     "ChainName": "טיב טעם",
+     "LastUpdateDate": "2026-11-10",
+     "LastUpdateTime": "05:05:01.613"
+    },
+    "records_tag": "Store",
+    "records": 54,
+    "samples": [
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "נתניה",
+      "Address": "בני גאון 2",
+      "City": "7400",
+      "ZipCode": "0000000"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "אשדוד",
+      "Address": "ז'בוטינסקי 45 מתחם סטאר סנטר",
+      "City": "70",
+      "ZipCode": "0000000"
+     },
+     {
+      "StoreID": "006",
+      "BikoretNo": "1",
+      "StoreType": "1",
+      "StoreName": "בת ים",
+      "Address": "אהוד קינמון 14",
+      "City": "6200",
+      "ZipCode": "5959401"
+     }
+    ]
+   }
+  ],
+  "Yohananof": [
+   {
+    "file": "PriceFull7290803800003-000-001-20261110-004031.xml",
+    "bytes": 8822290,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290803800003",
+     "SubChainID": "000",
+     "StoreID": "001",
+     "BikoretNo": "0"
+    },
+    "records_tag": "Item",
+    "records": 10690,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-10-28T10:01:00",
+      "ItemCode": "101114",
+      "LastSaleDateTime": "2026-11-09T18:47:44",
+      "ItemType": "0",
+      "ItemName": "תרומה לבית אלמוג שיל",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "",
+      "ManufactureItemDescription": "תרומה לבית אלמוג שיל",
+      "UnitQty": "יחידות",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "יחידות",
+      "bIsWeighted": "0",
+      "QtyInPackage": "0",
+      "ItemPrice": "15.00",
+      "UnitOfMeasurePrice": "15.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2026-08-02T08:29:00",
+      "ItemCode": "1022788",
+      "LastSaleDateTime": "2026-10-22T10:59:49",
+      "ItemType": "0",
+      "ItemName": "*מבצע* גבינת פקורינו",
+      "ManufactureName": "אלפאסטור",
+      "ManufactureCountry": "",
+      "ManufactureItemDescription": "*מבצע* גבינת פקורינו",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "139.00",
+      "UnitOfMeasurePrice": "139.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2026-02-08T12:22:00",
+      "ItemCode": "1022801",
+      "LastSaleDateTime": "2026-11-09T19:08:49",
+      "ItemType": "0",
+      "ItemName": "גבינה צהובה קלאסית 2",
+      "ManufactureName": "גולד פרוסט",
+      "ManufactureCountry": "PL",
+      "ManufactureItemDescription": "גבינה צהובה קלאסית 2",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "31.00",
+      "UnitOfMeasurePrice": "31.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "PriceFull7290803800003-000-004-20261110-004031.xml",
+    "bytes": 9192144,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290803800003",
+     "SubChainID": "000",
+     "StoreID": "004",
+     "BikoretNo": "0"
+    },
+    "records_tag": "Item",
+    "records": 11137,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-06-03T14:20:00",
+      "ItemCode": "101114",
+      "LastSaleDateTime": "2026-11-09T19:34:42",
+      "ItemType": "0",
+      "ItemName": "תרומה לבית אלמוג שיל",
+      "ManufactureName": "לא ידוע",
+      "ManufactureCountry": "",
+      "ManufactureItemDescription": "תרומה לבית אלמוג שיל",
+      "UnitQty": "יחידות",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "יחידות",
+      "bIsWeighted": "0",
+      "QtyInPackage": "0",
+      "ItemPrice": "15.00",
+      "UnitOfMeasurePrice": "15.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2026-08-02T09:02:00",
+      "ItemCode": "1022788",
+      "LastSaleDateTime": "2026-11-09T20:02:04",
+      "ItemType": "0",
+      "ItemName": "*מבצע* גבינת פקורינו",
+      "ManufactureName": "אלפאסטור",
+      "ManufactureCountry": "",
+      "ManufactureItemDescription": "*מבצע* גבינת פקורינו",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "139.00",
+      "UnitOfMeasurePrice": "139.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2026-02-08T10:09:00",
+      "ItemCode": "1022801",
+      "LastSaleDateTime": "2026-11-09T19:25:50",
+      "ItemType": "0",
+      "ItemName": "גבינה צהובה קלאסית 2",
+      "ManufactureName": "גולד פרוסט",
+      "ManufactureCountry": "PL",
+      "ManufactureItemDescription": "גבינה צהובה קלאסית 2",
+      "UnitQty": "קילוגרם",
+      "Quantity": "1.00",
+      "UnitOfMeasure": "1קילוגרם",
+      "bIsWeighted": "1",
+      "QtyInPackage": "0",
+      "ItemPrice": "31.00",
+      "UnitOfMeasurePrice": "31.00",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "Stores7290803800003-000-20261108-010000.xml",
+    "bytes": 19636,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290803800003",
+     "ChainName": "מ. יוחננוף ובניו",
+     "LastUpdateDate": "2026-11-08",
+     "LastUpdateTime": "01:00:00.140"
+    },
+    "records_tag": "Store",
+    "records": 51,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "יוחננוף מפוח",
+      "Address": "רחוב המפוח 11, אזור התעשיה",
+      "City": "0",
+      "ZIPCode": "0000000"
+     },
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "יוחננוף ישן",
+      "Address": "unknown",
+      "City": "0",
+      "ZIPCode": "0000000"
+     },
+     {
+      "StoreID": "004",
+      "BikoretNo": "3",
+      "StoreType": "1",
+      "StoreName": "בילו",
+      "Address": "צומת ביל\"ו",
+      "City": "0",
+      "ZIPCode": "0000000"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290803800003-000-20261109-010000.xml",
+    "bytes": 19636,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290803800003",
+     "ChainName": "מ. יוחננוף ובניו",
+     "LastUpdateDate": "2026-11-09",
+     "LastUpdateTime": "01:00:00.960"
+    },
+    "records_tag": "Store",
+    "records": 51,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "יוחננוף מפוח",
+      "Address": "רחוב המפוח 11, אזור התעשיה",
+      "City": "0",
+      "ZIPCode": "0000000"
+     },
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "יוחננוף ישן",
+      "Address": "unknown",
+      "City": "0",
+      "ZIPCode": "0000000"
+     },
+     {
+      "StoreID": "004",
+      "BikoretNo": "3",
+      "StoreType": "1",
+      "StoreName": "בילו",
+      "Address": "צומת ביל\"ו",
+      "City": "0",
+      "ZIPCode": "0000000"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290803800003-000-20261110-010000.xml",
+    "bytes": 19636,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290803800003",
+     "ChainName": "מ. יוחננוף ובניו",
+     "LastUpdateDate": "2026-11-10",
+     "LastUpdateTime": "01:00:00.747"
+    },
+    "records_tag": "Store",
+    "records": 51,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "יוחננוף מפוח",
+      "Address": "רחוב המפוח 11, אזור התעשיה",
+      "City": "0",
+      "ZIPCode": "0000000"
+     },
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "יוחננוף ישן",
+      "Address": "unknown",
+      "City": "0",
+      "ZIPCode": "0000000"
+     },
+     {
+      "StoreID": "004",
+      "BikoretNo": "3",
+      "StoreType": "1",
+      "StoreName": "בילו",
+      "Address": "צומת ביל\"ו",
+      "City": "0",
+      "ZIPCode": "0000000"
+     }
+    ]
+   }
+  ],
+  "RamiLevy": [
+   {
+    "file": "PriceFull7290058140886-001-001-20261110-001019.xml",
+    "bytes": 11255925,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290058140886",
+     "SubChainID": "001",
+     "StoreID": "001",
+     "BikoretNo": "4"
+    },
+    "records_tag": "Item",
+    "records": 12967,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-02-18T15:52:25.000",
+      "ItemCode": "7290017023212",
+      "LastSaleDateTime": "2026-09-10T10:26:00.000",
+      "ItemType": "1",
+      "ItemName": "רביעיית פחיות שוופס",
+      "ManufactureName": "יפאורה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "רביעיית פחיות שוופס",
+      "UnitQty": "לא ידוע",
+      "Quantity": "1.32",
+      "UnitOfMeasure": "ליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "12.50",
+      "UnitOfMeasurePrice": "9.47",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-02-18T15:52:26.000",
+      "ItemCode": "7290017023229",
+      "LastSaleDateTime": "2026-09-11T09:54:59.000",
+      "ItemType": "1",
+      "ItemName": "גזוז בטעם תות ליים ש",
+      "ManufactureName": "יפאורה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "גזוז בטעם תות ליים ש",
+      "UnitQty": "לא ידוע",
+      "Quantity": "1.32",
+      "UnitOfMeasure": "ליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "12.50",
+      "UnitOfMeasurePrice": "9.47",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-02-18T15:52:26.000",
+      "ItemCode": "7290017023236",
+      "LastSaleDateTime": "2026-11-09T20:34:53.000",
+      "ItemType": "1",
+      "ItemName": "רביעיית פחיות שוופס",
+      "ManufactureName": "יפאורה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "רביעיית פחיות שוופס",
+      "UnitQty": "לא ידוע",
+      "Quantity": "1.32",
+      "UnitOfMeasure": "ליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "12.50",
+      "UnitOfMeasurePrice": "9.47",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "PriceFull7290058140886-001-001-20261110-121500.xml",
+    "bytes": 11259354,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290058140886",
+     "SubChainID": "001",
+     "StoreID": "001",
+     "BikoretNo": "4"
+    },
+    "records_tag": "Item",
+    "records": 12971,
+    "samples": [
+     {
+      "PriceUpdateTime": "2025-02-18T15:52:25.000",
+      "ItemCode": "7290017023212",
+      "LastSaleDateTime": "2026-09-10T10:26:00.000",
+      "ItemType": "1",
+      "ItemName": "רביעיית פחיות שוופס",
+      "ManufactureName": "יפאורה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "רביעיית פחיות שוופס",
+      "UnitQty": "לא ידוע",
+      "Quantity": "1.32",
+      "UnitOfMeasure": "ליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "12.50",
+      "UnitOfMeasurePrice": "9.47",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-02-18T15:52:26.000",
+      "ItemCode": "7290017023229",
+      "LastSaleDateTime": "2026-09-11T09:54:59.000",
+      "ItemType": "1",
+      "ItemName": "גזוז בטעם תות ליים ש",
+      "ManufactureName": "יפאורה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "גזוז בטעם תות ליים ש",
+      "UnitQty": "לא ידוע",
+      "Quantity": "1.32",
+      "UnitOfMeasure": "ליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "12.50",
+      "UnitOfMeasurePrice": "9.47",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     },
+     {
+      "PriceUpdateTime": "2025-02-18T15:52:26.000",
+      "ItemCode": "7290017023236",
+      "LastSaleDateTime": "2026-11-09T20:34:53.000",
+      "ItemType": "1",
+      "ItemName": "רביעיית פחיות שוופס",
+      "ManufactureName": "יפאורה",
+      "ManufactureCountry": "ישראל",
+      "ManufactureItemDescription": "רביעיית פחיות שוופס",
+      "UnitQty": "לא ידוע",
+      "Quantity": "1.32",
+      "UnitOfMeasure": "ליטר",
+      "bIsWeighted": "0",
+      "QtyInPackage": "לא ידוע",
+      "ItemPrice": "12.50",
+      "UnitOfMeasurePrice": "9.47",
+      "AllowDiscount": "1",
+      "ItemStatus": ""
+     }
+    ]
+   },
+   {
+    "file": "Stores7290058140886-000-20261108-050500.xml",
+    "bytes": 38638,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290058140886",
+     "ChainName": "רמי לוי שיווק השקמה",
+     "LastUpdateDate": "2026-11-08",
+     "LastUpdateTime": "05:05:00.753"
+    },
+    "records_tag": "Store",
+    "records": 99,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "תלפיות",
+      "Address": "האומן,15",
+      "City": "3000",
+      "ZIPCode": "9342110"
+     },
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "בזק מחסני מזון",
+      "Address": "יד חרוצים 18",
+      "City": "3000",
+      "ZIPCode": "9342155"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "רמות",
+      "Address": "90 דרך החורש",
+      "City": "3000",
+      "ZIPCode": "1294800"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290058140886-000-20261109-050500.xml",
+    "bytes": 38638,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290058140886",
+     "ChainName": "רמי לוי שיווק השקמה",
+     "LastUpdateDate": "2026-11-09",
+     "LastUpdateTime": "05:05:00.363"
+    },
+    "records_tag": "Store",
+    "records": 99,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "תלפיות",
+      "Address": "האומן,15",
+      "City": "3000",
+      "ZIPCode": "9342110"
+     },
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "בזק מחסני מזון",
+      "Address": "יד חרוצים 18",
+      "City": "3000",
+      "ZIPCode": "9342155"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "רמות",
+      "Address": "90 דרך החורש",
+      "City": "3000",
+      "ZIPCode": "1294800"
+     }
+    ]
+   },
+   {
+    "file": "Stores7290058140886-000-20261110-050500.xml",
+    "bytes": 38638,
+    "root": "Root",
+    "top": {
+     "ChainID": "7290058140886",
+     "ChainName": "רמי לוי שיווק השקמה",
+     "LastUpdateDate": "2026-11-10",
+     "LastUpdateTime": "05:05:00.840"
+    },
+    "records_tag": "Store",
+    "records": 99,
+    "samples": [
+     {
+      "StoreID": "001",
+      "BikoretNo": "6",
+      "StoreType": "1",
+      "StoreName": "תלפיות",
+      "Address": "האומן,15",
+      "City": "3000",
+      "ZIPCode": "9342110"
+     },
+     {
+      "StoreID": "002",
+      "BikoretNo": "5",
+      "StoreType": "1",
+      "StoreName": "בזק מחסני מזון",
+      "Address": "יד חרוצים 18",
+      "City": "3000",
+      "ZIPCode": "9342155"
+     },
+     {
+      "StoreID": "003",
+      "BikoretNo": "4",
+      "StoreType": "1",
+      "StoreName": "רמות",
+      "Address": "90 דרך החורש",
+      "City": "3000",
+      "ZIPCode": "1294800"
+     }
+    ]
+   }
+  ]
+ },
+ "errors": []
+}
