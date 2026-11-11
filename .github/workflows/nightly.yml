@@ -1,7 +1,12 @@
 name: nightly prices
 on:
   schedule:
-    - cron: "30 2 * * *"
+    # GitHub starts scheduled runs late and sometimes not at all, so there are several attempts a day.
+    # The chains finish publishing around noon Israel time; an attempt is skipped once the day is complete.
+    - cron: "17 4 * * *"
+    - cron: "17 8 * * *"
+    - cron: "47 10 * * *"
+    - cron: "17 13 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -10,20 +15,23 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 concurrency:
   group: prices
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   plan:
     runs-on: ubuntu-latest
     outputs:
       chains: ${{ steps.plan.outputs.chains }}
+      skip: ${{ steps.plan.outputs.skip }}
     steps:
       - uses: actions/checkout@v4
       - id: plan
         run: python plan.py
   fetch:
     needs: plan
+    if: ${{ needs.plan.outputs.skip != 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 170
     strategy:
@@ -47,7 +55,7 @@ jobs:
           if-no-files-found: ignore
   build:
     needs: [plan, fetch]
-    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    if: ${{ !cancelled() && needs.plan.result == 'success' && needs.plan.outputs.skip != 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 200
     environment:
@@ -62,12 +70,16 @@ jobs:
           pattern: chain-*
           merge-multiple: true
           path: art
-      - run: python build.py
-      - uses: actions/upload-pages-artifact@v3
+      - id: build
+        run: python build.py
+      - id: pages
+        uses: actions/upload-pages-artifact@v3
         with:
           path: site
-      - uses: actions/deploy-pages@v4
-      - run: |
+      - id: deploy
+        uses: actions/deploy-pages@v4
+      - name: save status
+        run: |
           git config user.name "agalist-bot"
           git config user.email "agalist-bot@users.noreply.github.com"
           git fetch origin main
@@ -75,3 +87,11 @@ jobs:
           git add status
           git commit -m "nightly status" || echo "nothing to commit"
           git push
+      - name: health check and alert
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          PAGES_OUTCOME: ${{ steps.pages.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+        run: python health.py
