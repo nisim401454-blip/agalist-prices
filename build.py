@@ -1,11 +1,12 @@
 """Merges the per-chain files into the small public files the Agalist app reads:
 products.json, cities.json, chains.json, city/<code>.json and status.json."""
-import collections, gzip, io, json, math, os, re, shutil, time, urllib.parse, urllib.request, zlib
+import collections, datetime, gzip, io, json, math, os, re, shutil, time, urllib.parse, urllib.request, zlib, zoneinfo
 
 CONFIG = json.load(open("config.json", encoding="utf8"))
 GENERICS = json.load(open("generics.json", encoding="utf8"))
 BASE_URL = CONFIG["base_url"]
 UA = {"User-Agent": "agalist-prices/1.0 (+https://github.com/nisim401454-blip/agalist-prices)"}
+NOW_IL = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Jerusalem")).replace(tzinfo=None)
 STATUS = {"built": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "chains": {}, "notes": []}
 QUOTES = str.maketrans("", "", "\"'`׳״’")
 
@@ -24,6 +25,12 @@ def previous(path, default):
     except Exception as error:
         STATUS["notes"].append(f"no previous {path}: {str(error)[:80]}")
         return default
+
+
+try:
+    PREVIOUS_STATUS = json.load(open("status/status.json", encoding="utf8"))  # the last run's committed status
+except (OSError, ValueError):
+    PREVIOUS_STATUS = None
 
 
 def clean(value):
@@ -54,15 +61,34 @@ for name in CONFIG["chains"]:
             data = None
     log_path = f"art/{name}.log.json"
     log = json.load(open(log_path, encoding="utf8")) if os.path.exists(log_path) else {}
+    age = None
+    if data:
+        stamp = data.get("data_to") or (data.get("date") + " 12:00" if data.get("date") else None)
+        try:
+            age = round((NOW_IL - datetime.datetime.strptime(stamp, "%Y-%m-%d %H:%M")).total_seconds() / 3600, 1)
+        except (TypeError, ValueError):
+            age = None
+    # fresh: downloaded in this run and published within the last 30 hours. stale: older, or reused from the
+    # last publication. expired: older than a week, and left out so nobody compares against dead prices.
+    state = "missing"
+    if data:
+        state = "expired" if age is not None and age > 7 * 24 else "fresh" if source == "new" and (age is None or age <= 30) else "stale"
     STATUS["chains"][name] = {
         "source": source if data else "missing",
+        "state": state,
         "date": data.get("date") if data else None,
+        "date_source": (data or {}).get("date_source", "run"),
+        "data_from": (data or {}).get("data_from"),
+        "data_to": (data or {}).get("data_to"),
+        "fetched": (data or {}).get("fetched"),
+        "fallback": bool((data or {}).get("fallback")),
+        "age_hours": age,
         "stores": len(data["stores"]) if data else 0,
         "listed_stores": (data or {}).get("all_stores", 0),
         "items": len(data["items"]) if data else 0,
         "errors": log.get("errors", [])[:3],
     }
-    if data and data["stores"]:
+    if data and data["stores"] and state != "expired":
         chains[name] = data
 print("chains loaded:", {k: v["stores"] for k, v in STATUS["chains"].items()})
 
@@ -427,7 +453,7 @@ city_index.sort(key=lambda city: -city["s"])
 
 dump("products.json", products)
 dump("cities.json", city_index)
-dump("chains.json", {name: {"name": CONFIG["names"].get(name, chains[name].get("chain_name") or name), "date": chains[name].get("date")} for name in chains})
+dump("chains.json", {name: {"name": CONFIG["names"].get(name, chains[name].get("chain_name") or name), "date": chains[name].get("date"), "state": STATUS["chains"][name]["state"]} for name in chains})
 dump("geo.json", geo)
 dump("localities.json", localities)
 for name in chains:
@@ -451,6 +477,29 @@ STATUS.update(
         "top_cities": [[city["n"], city["s"]] for city in city_index[:15]],
     }
 )
+# ---------- health: is tonight's publication good enough to stand for the day? ----------
+states = [entry["state"] for entry in STATUS["chains"].values()]
+fresh, wanted = states.count("fresh"), len(CONFIG["chains"])
+today = NOW_IL.strftime("%Y-%m-%d")
+dated_today = sum(1 for entry in STATUS["chains"].values() if entry["state"] == "fresh" and entry["date"] == today)
+problems = []
+if fresh < math.ceil(wanted * 0.7):
+    problems.append(f"only {fresh} of {wanted} chains are fresh")
+before = (PREVIOUS_STATUS or {}).get("stores") or 0
+if before and STATUS["stores"] < before * 0.8:
+    problems.append(f"stores dropped from {before} to {STATUS['stores']}")
+for name, entry in STATUS["chains"].items():
+    if entry["state"] in ("missing", "expired"):
+        problems.append(f"{name} is {entry['state']}")
+STATUS["health"] = {
+    "ok": not [p for p in problems if "chains are fresh" in p or "stores dropped" in p],
+    "fresh": fresh, "stale": states.count("stale"), "expired": states.count("expired"), "missing": states.count("missing"),
+    "dated_today": dated_today,
+    # complete: most chains already carry today's files, so later runs today have nothing to add
+    "complete": dated_today >= math.ceil(wanted * 0.7),
+    "problems": problems,
+    "stale_chains": [name for name, entry in STATUS["chains"].items() if entry["state"] != "fresh"],
+}
 dump("status.json", STATUS)
 os.makedirs("status", exist_ok=True)
 shutil.copy(site + "/status.json", "status/status.json")

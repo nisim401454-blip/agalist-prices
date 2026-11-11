@@ -32,6 +32,21 @@ def xml_files(prefix):
     return sorted(found)
 
 
+def file_time(path, now):
+    """The publication time written in a price file's name (chains use 12 or 14 digits), or None."""
+    best = None
+    for run in re.findall(r"\d{12,}", os.path.basename(path)):
+        for piece, form in ((run[-12:], "%Y%m%d%H%M"), (run[-14:], "%Y%m%d%H%M%S"), (run[:12], "%Y%m%d%H%M"), (run[:14], "%Y%m%d%H%M%S")):
+            try:
+                when = datetime.datetime.strptime(piece, form)
+            except ValueError:
+                continue
+            gap = abs((now - when).total_seconds())
+            if gap < 10 * 86400 and (best is None or gap < best[0]):
+                best = (gap, when)
+    return best[1] if best else None
+
+
 def tag(el):
     return el.tag.split("}")[-1].lower()
 
@@ -121,8 +136,12 @@ def main():
     scrape(["STORE_FILE"])
     today = _now()
     scrape(["PRICE_FULL_FILE"], when=today, limit=LIMIT)
+    fallback = False
     if not xml_files("pricefull"):
+        fallback = True  # nothing published today yet: yesterday's files stand in, and the output says so
         scrape(["PRICE_FULL_FILE"], when=today - datetime.timedelta(days=1), limit=LIMIT)
+    clock = today.replace(tzinfo=None)
+    times = {}
 
     stores, meta = {}, {}
     for path in xml_files("store"):
@@ -148,6 +167,7 @@ def main():
         if sid in latest and latest[sid] >= stamp:
             continue
         latest[sid] = stamp
+        times[sid] = file_time(path, clock)
         log["price_files"] += 1
         meta.setdefault("chain_id", header.get("chainid", ""))
         subs[sid] = norm_id(header.get("subchainid", "0"))
@@ -181,11 +201,18 @@ def main():
                     delta[code] = 0
             diff[sid] = delta
 
+    known = [times[sid] for sid in prices if times.get(sid)]
     out = {
         "chain": CHAIN,
         "chain_id": meta.get("chain_id", ""),
         "chain_name": meta.get("chain_name", ""),
-        "date": _now().strftime("%Y-%m-%d"),
+        "date": (max(known) if known else clock).strftime("%Y-%m-%d"),
+        "date_source": "files" if known else "run",
+        "fetched": clock.strftime("%Y-%m-%d %H:%M"),
+        "data_from": min(known).strftime("%Y-%m-%d %H:%M") if known else None,
+        "data_to": max(known).strftime("%Y-%m-%d %H:%M") if known else None,
+        "fallback": fallback,
+        "undated_files": sum(1 for sid in prices if not times.get(sid)),
         "stores": {sid: dict(stores.get(sid, {}), sub=subs[sid]) for sid in prices},
         "all_stores": len(stores),
         "items": catalog,
