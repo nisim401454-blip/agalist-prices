@@ -63,7 +63,7 @@ for name in CONFIG["chains"]:
     log = json.load(open(log_path, encoding="utf8")) if os.path.exists(log_path) else {}
     age = None
     if data:
-        stamp = data.get("data_to") or (data.get("date") + " 12:00" if data.get("date") else None)
+        stamp = data.get("data_to") or data.get("fetched") or (data.get("date") + " 12:00" if data.get("date") else None)
         try:
             age = round((NOW_IL - datetime.datetime.strptime(stamp, "%Y-%m-%d %H:%M")).total_seconds() / 3600, 1)
         except (TypeError, ValueError):

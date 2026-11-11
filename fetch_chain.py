@@ -32,18 +32,21 @@ def xml_files(prefix):
     return sorted(found)
 
 
+STAMP = re.compile(r"(?=(20\d{2})[-_.]?(\d{2})[-_.]?(\d{2})[-_.T ]?(\d{2})[-_.:]?(\d{2}))")
+
+
 def file_time(path, now):
-    """The publication time written in a price file's name (chains use 12 or 14 digits), or None."""
+    """The publication time written in a price file's name or folder, or None. Chains write it as
+    YYYYMMDDHHMM, sometimes with separators or seconds; the candidate closest to now wins."""
     best = None
-    for run in re.findall(r"\d{12,}", os.path.basename(path)):
-        for piece, form in ((run[-12:], "%Y%m%d%H%M"), (run[-14:], "%Y%m%d%H%M%S"), (run[:12], "%Y%m%d%H%M"), (run[:14], "%Y%m%d%H%M%S")):
-            try:
-                when = datetime.datetime.strptime(piece, form)
-            except ValueError:
-                continue
-            gap = abs((now - when).total_seconds())
-            if gap < 10 * 86400 and (best is None or gap < best[0]):
-                best = (gap, when)
+    for match in STAMP.finditer(path.replace(os.sep, "/")[-160:]):
+        try:
+            when = datetime.datetime(*map(int, match.groups()))
+        except ValueError:
+            continue
+        gap = abs((now - when).total_seconds())
+        if gap < 10 * 86400 and (best is None or gap < best[0]):
+            best = (gap, when)
     return best[1] if best else None
 
 
@@ -168,6 +171,8 @@ def main():
             continue
         latest[sid] = stamp
         times[sid] = file_time(path, clock)
+        if len(log.setdefault("sample_files", [])) < 4:
+            log["sample_files"].append(os.path.relpath(path, "dumps")[-90:])
         log["price_files"] += 1
         meta.setdefault("chain_id", header.get("chainid", ""))
         subs[sid] = norm_id(header.get("subchainid", "0"))
