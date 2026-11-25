@@ -1,0 +1,86 @@
+name: weekly prices
+# Once a week, on Sunday (Israel). Times below are UTC: 12:47 UTC is 14:47 in winter and 15:47 in summer,
+# after the last chain (Osher Ad, ~13:50-14:15) has published Sunday's files.
+# The 14:47 and 16:47 UTC attempts are backups: they skip themselves once Sunday's publication is live.
+# Manual refresh: Actions > weekly prices > Run workflow. It never starts while another price run is active.
+on:
+  schedule:
+    - cron: "47 12 * * 0"
+    - cron: "47 14 * * 0"
+    - cron: "47 16 * * 0"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+  actions: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      chains: ${{ steps.plan.outputs.chains }}
+      skip: ${{ steps.plan.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WORKFLOW_FILE: prices.yml
+        run: python plan.py
+  fetch:
+    needs: plan
+    if: ${{ needs.plan.outputs.skip != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        chain: ${{ fromJson(needs.plan.outputs.chains) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install il-supermarket-scraper
+      - run: python fetch_chain.py ${{ matrix.chain }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chain-${{ matrix.chain }}
+          path: out/
+          retention-days: 3
+          if-no-files-found: ignore
+  build:
+    # Collects and builds only. The finished site is kept as the "site" artifact for 14 days,
+    # so a failed publish can be retried from it without downloading the chains again.
+    needs: [plan, fetch]
+    if: ${{ !cancelled() && needs.plan.result == 'success' && needs.plan.outputs.skip != 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chain-*
+          merge-multiple: true
+          path: art
+      - run: python build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site/
+          retention-days: 14
+          if-no-files-found: error
+  publish:
+    needs: [plan, build]
+    if: ${{ !cancelled() && needs.plan.outputs.skip != 'true' }}
+    uses: ./.github/workflows/publish.yml
+    with:
+      run_id: ${{ github.run_id }}
+      build_result: ${{ needs.build.result }}
+    secrets: inherit

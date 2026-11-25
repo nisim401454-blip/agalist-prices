@@ -1,0 +1,105 @@
+name: publish prices
+# Puts an already built site on GitHub Pages. Called by "weekly prices" after every build, and can be
+# run by hand to retry a failed publish: Actions > publish prices > Run workflow, with the number of the
+# price run (empty = the newest price run that built a site). Nothing is downloaded from the chains.
+# If publishing fails, GitHub Pages keeps serving the last version that worked.
+on:
+  workflow_call:
+    inputs:
+      run_id:
+        type: string
+        required: true
+      build_result:
+        type: string
+        default: success
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "מספר הריצה של weekly prices (ריק = האחרונה שבנתה אתר)"
+        type: string
+        default: ""
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write
+  actions: read
+concurrency:
+  group: pages-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: source
+        if: ${{ inputs.build_result == '' || inputs.build_result == 'success' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run_id }}
+        run: python publish_source.py
+      - id: download
+        # the site built earlier in this same price run
+        if: ${{ steps.source.outcome == 'success' && steps.source.outputs.run_id == github.run_id }}
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+      - id: download_other
+        # a retry: the site built by an earlier price run
+        if: ${{ steps.source.outcome == 'success' && steps.source.outputs.run_id != github.run_id }}
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+          run-id: ${{ steps.source.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - id: stamp
+        if: ${{ steps.download.outcome == 'success' || steps.download_other.outcome == 'success' }}
+        env:
+          SOURCE_RUN: ${{ steps.source.outputs.run_id }}
+        run: python stamp.py
+      - id: pages
+        if: ${{ steps.stamp.outcome == 'success' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        if: ${{ steps.pages.outcome == 'success' }}
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: wait before the second deploy attempt
+        if: ${{ steps.deploy.outcome == 'failure' }}
+        run: sleep 90
+      - id: deploy_again
+        if: ${{ steps.deploy.outcome == 'failure' }}
+        uses: actions/deploy-pages@v4
+      - name: save the published status
+        # Only a publication that went live updates status/status.json (and with it the date the app shows).
+        if: ${{ steps.deploy.outcome == 'success' || steps.deploy_again.outcome == 'success' }}
+        run: |
+          git config user.name "agalist-bot"
+          git config user.email "agalist-bot@users.noreply.github.com"
+          git fetch origin main
+          git reset origin/main
+          cp site/status.json status/status.json
+          git add status/status.json
+          git commit -m "published prices" || echo "nothing to commit"
+          git push origin HEAD:main
+      - name: health check and alert
+        if: ${{ always() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TRIGGER: ${{ github.event_name }}
+          BUILD_OUTCOME: ${{ inputs.build_result || 'success' }}
+          SOURCE_OUTCOME: ${{ steps.source.outcome }}
+          DOWNLOAD_OUTCOME: ${{ steps.download.outcome == 'success' && 'success' || steps.download_other.outcome }}
+          PAGES_OUTCOME: ${{ steps.pages.outcome }}
+          DEPLOY_OUTCOME: ${{ steps.deploy_again.outcome == 'success' && 'success' || steps.deploy.outcome }}
+        run: python health.py
