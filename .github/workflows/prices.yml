@@ -1,24 +1,20 @@
-name: nightly prices
+name: weekly prices
+# Once a week, on Sunday (Israel). Times below are UTC: 12:47 UTC is 14:47 in winter and 15:47 in summer,
+# after the last chain (Osher Ad, ~13:50-14:15) has published Sunday's files.
+# The 14:47 and 16:47 UTC attempts are backups: they skip themselves once Sunday's publication is live.
+# Manual refresh: Actions > weekly prices > Run workflow. It never starts while another price run is active.
 on:
   schedule:
-    # GitHub starts scheduled runs late and sometimes not at all, so there are several attempts a day.
-    # The chains finish publishing around noon Israel time; an attempt is skipped once the day is complete.
-    - cron: "17 4 * * *"
-    - cron: "17 8 * * *"
-    - cron: "47 10 * * *"
-    - cron: "17 13 * * *"
+    - cron: "47 12 * * 0"
+    - cron: "47 14 * * 0"
+    - cron: "47 16 * * 0"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["*.py", "config.json", "generics.json"]
 permissions:
   contents: write
   pages: write
   id-token: write
   issues: write
-concurrency:
-  group: prices
-  cancel-in-progress: false
+  actions: read
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -28,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WORKFLOW_FILE: prices.yml
         run: python plan.py
   fetch:
     needs: plan
@@ -51,15 +50,15 @@ jobs:
         with:
           name: chain-${{ matrix.chain }}
           path: out/
-          retention-days: 1
+          retention-days: 3
           if-no-files-found: ignore
   build:
+    # Collects and builds only. The finished site is kept as the "site" artifact for 14 days,
+    # so a failed publish can be retried from it without downloading the chains again.
     needs: [plan, fetch]
     if: ${{ !cancelled() && needs.plan.result == 'success' && needs.plan.outputs.skip != 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 200
-    environment:
-      name: github-pages
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -70,28 +69,18 @@ jobs:
           pattern: chain-*
           merge-multiple: true
           path: art
-      - id: build
-        run: python build.py
-      - id: pages
-        uses: actions/upload-pages-artifact@v3
+      - run: python build.py
+      - uses: actions/upload-artifact@v4
         with:
-          path: site
-      - id: deploy
-        uses: actions/deploy-pages@v4
-      - name: save status
-        run: |
-          git config user.name "agalist-bot"
-          git config user.email "agalist-bot@users.noreply.github.com"
-          git fetch origin main
-          git reset origin/main
-          git add status
-          git commit -m "nightly status" || echo "nothing to commit"
-          git push
-      - name: health check and alert
-        if: ${{ always() }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-          BUILD_OUTCOME: ${{ steps.build.outcome }}
-          PAGES_OUTCOME: ${{ steps.pages.outcome }}
-          DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
-        run: python health.py
+          name: site
+          path: site/
+          retention-days: 14
+          if-no-files-found: error
+  publish:
+    needs: [plan, build]
+    if: ${{ !cancelled() && needs.plan.outputs.skip != 'true' }}
+    uses: ./.github/workflows/publish.yml
+    with:
+      run_id: ${{ github.run_id }}
+      build_result: ${{ needs.build.result }}
+    secrets: inherit

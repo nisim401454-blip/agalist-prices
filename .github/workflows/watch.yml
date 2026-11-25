@@ -1,0 +1,19 @@
+name: weekly watch
+# Monday morning (Israel): a few seconds that check this week's prices really went live.
+# Days without a price run are expected; a week without a publication is not.
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: python health.py --watch
