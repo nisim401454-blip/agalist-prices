@@ -8,6 +8,7 @@ BASE_URL = CONFIG["base_url"]
 UA = {"User-Agent": "agalist-prices/1.0 (+https://github.com/nisim401454-blip/agalist-prices)"}
 NOW_IL = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Jerusalem")).replace(tzinfo=None)
 STATUS = {"built": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "chains": {}, "notes": []}
+EXPIRED_HOURS = 15 * 24  # updates are weekly: a chain may miss one Sunday and still be shown (marked as older)
 QUOTES = str.maketrans("", "", "\"'`׳״’")
 
 
@@ -45,7 +46,7 @@ def number(value):
         return ""
 
 
-# ---------- 1. chain files: tonight's download, or the last published one ----------
+# ---------- 1. chain files: this run's download, or the last published one ----------
 chains = {}
 for name in CONFIG["chains"]:
     path = f"art/{name}.json.gz"
@@ -69,10 +70,11 @@ for name in CONFIG["chains"]:
         except (TypeError, ValueError):
             age = None
     # fresh: downloaded in this run and published within the last 30 hours. stale: older, or reused from the
-    # last publication. expired: older than a week, and left out so nobody compares against dead prices.
+    # last publication (marked as such in updated.json). expired: older than two weekly updates, and left out
+    # so nobody compares against dead prices.
     state = "missing"
     if data:
-        state = "expired" if age is not None and age > 7 * 24 else "fresh" if source == "new" and (age is None or age <= 30) else "stale"
+        state = "expired" if age is not None and age > EXPIRED_HOURS else "fresh" if source == "new" and (age is None or age <= 30) else "stale"
     STATUS["chains"][name] = {
         "source": source if data else "missing",
         "state": state,
@@ -305,7 +307,7 @@ def city_center(code, name):
 
 def locate(key, chain, store, code, city_name):
     """Exact map point when the address is found, otherwise an approximate point near the city center.
-    Approximate stores are tried again on later nights with a differently worded query (3 tries)."""
+    Approximate stores are tried again on later runs with a differently worded query (3 tries)."""
     hit = geo.get(key) or None
     address = re.sub(r"[,;]+", " ", store.get("addr", "")).strip()
     tried = tries.get(key, 0)
@@ -477,7 +479,7 @@ STATUS.update(
         "top_cities": [[city["n"], city["s"]] for city in city_index[:15]],
     }
 )
-# ---------- health: is tonight's publication good enough to stand for the day? ----------
+# ---------- health: is this run's publication good enough to stand for the week? ----------
 states = [entry["state"] for entry in STATUS["chains"].values()]
 fresh, wanted = states.count("fresh"), len(CONFIG["chains"])
 today = NOW_IL.strftime("%Y-%m-%d")
@@ -500,9 +502,7 @@ STATUS["health"] = {
     "problems": problems,
     "stale_chains": [name for name, entry in STATUS["chains"].items() if entry["state"] != "fresh"],
 }
-dump("status.json", STATUS)
-os.makedirs("status", exist_ok=True)
-shutil.copy(site + "/status.json", "status/status.json")
+dump("status.json", STATUS)  # status/status.json is updated only after this site is published (publish.yml)
 sample = CONFIG.get("sample_city")
 if sample:
     os.makedirs("sample/city", exist_ok=True)
